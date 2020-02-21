@@ -13,10 +13,7 @@ volatile unsigned int pulse=0;
 
 ISR(INT0_vect)
 {
-	PORTB=0x08;
-	_delay_ms(1);
-	PORTB=0x00;
-	_delay_ms(1);
+	
 	pulse++;
 }
 
@@ -44,9 +41,9 @@ int main(void)
 			pulse=0;
 			PORTC|= (1<<PORTC1);
 			_delay_ms(100);
-			OCR1A=1950;
+			OCR1A=1950;  // rotate serrvo motor 120 degree
 			_delay_ms(200);
-			OCR1A=1000;
+			OCR1A=1000;   // take back servo motor to 0 degree
 			_delay_ms(200);
 			PORTC&= ~(1<<PORTC1);
 			_delay_ms(100);
